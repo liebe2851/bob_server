@@ -2,19 +2,22 @@
 <html>
 
 <head>
+
     <meta charset='utf-8'>
 
     <style>
         .read_table {
-            border: 1px solid #444444;
+	    border: 1px solid #444444;
+	    border-radius:5px;
             margin-top: 30px;
         }
 
         .read_title {
             height: 45px;
             font-size: 23.5px;
-            text-align: center;
-            background-color: #3C3C3C;
+	    text-align: center;
+	    border-radius:5px;
+	    background : linear-gradient(to left , #92a8d1,#f7cac9);
             color: white;
             width: 1000px;
         }
@@ -50,7 +53,11 @@
         .read_content {
             padding: 20px;
             border-top: 1px solid #444444;
-            height: 500px;
+	    height: 500px;
+	     background-image : url(https://blog.kakaocdn.net/dn/bcOToP/btrIH6QD4oC/WKYuztIKFiSMFXM7k6RURK/img.png);
+		background-repeat:no-repeat;
+		background-size:300px;
+		background-position:left bottom;
         }
 
         .read_btn {
@@ -75,7 +82,8 @@
             width: 700px;
             height: 500px;
             text-align: center;
-            margin: auto;
+	    margin: auto;
+	    
         }
 
         .read_text3 {
@@ -105,6 +113,7 @@
     $rows = mysqli_fetch_assoc($result);
     $db_level = $rows['level'];   
     $user_level= $_SESSION['level'];
+    $contents=nl2br($rows['content']);
 	?> 
 <?php if (!$user_level)
     {  ?>
@@ -131,7 +140,7 @@
 
     <table class="read_table" align=center>
         <tr>
-            <td colspan="4" class="read_title"><?php echo $rows['title'] ?></td>
+            <td colspan="4" class="read_title"><b><?php echo $rows['title'] ?></b></td>
         </tr>
 	<tr>
 	 
@@ -144,15 +153,22 @@
 
         <tr>
             <td colspan="4" class="read_content" valign="top">
-                <?php echo $rows['content'] ?></td>
+                <?php echo $contents ?></td>
         </tr>
     </table>
 
     <!-- MODIFY & DELETE 추후 세션처리로 보완 예정 -->
     <div class="read_btn">
-        <button class="read_btn1" onclick="location.href='./index.php'">목록</button>&nbsp;&nbsp;
-        <button class="read_btn1" onclick="location.href='./delete.php?number=<?= $number ?>&id=<?= $_SESSION['userid'] ?>'">삭제</button>
+	<button style="cursor: pointer" class="read_btn1" onclick="location.href='index.php'">목록</button>&nbsp;&nbsp;
+        <button style="cursor: pointer" class="read_btn1" onclick="location.href='./delete.php?number=<?= $number?>'">삭제</button>
     </div>
+<?php
+		$number=$_GET['number'];
+		$hit=$rows['hit']+1;
+		
+		$query2= "update board set hit=$hit where numer=$number";
+		$connect->query($query2);
+?>
 </body>
 
 </html>

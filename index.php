@@ -3,25 +3,36 @@
 
 <head>
     <meta charset='utf-8'>
-    <style>
-        table {
+    <style>	
+	body{background-image: url(https://blog.kakaocdn.net/dn/zubwY/btrIEcYrNj0/MvdC5JpwPkjQIFoAZtEUD1/img.png);
+	background-repeat: no-repeat;
+	background-size: 300px;						
+	background-position:left bottom;
+}
+	table {
+	   
             border-top: 1px solid #444444;
             border-collapse: collapse;
         }
 
         tr {
             border-bottom: 1px solid #444444;
-            padding: 10px;
+	    padding: 10px;
+		background : linear-gradient(to left, #f7cac9, #92a8d1);
         }
 
         td {
-            border-bottom: 1px solid #efefef;
+            border-bottom: 1px solid #444444;
             padding: 10px;
         }
 
-        table .even {
-            background: #efefef;
-        }
+	table .even {
+            background: linear-gradient(to left,#f7cac9,#ffffff);
+	}
+	.odd {
+		background:linear-gradient(to right,#ffffff,#92a8d1);
+
+	}
 
         .text {
             text-align: center;
@@ -55,7 +66,7 @@
     session_start();
 
     if (isset($_SESSION['userid'])) {
-    ?><b><?php echo $_SESSION['userid']; ?></b>님 반갑습니다.
+    ?><b><?php echo $_SESSION['userid']; ?></b> 친구! 반가워! 
         <button onclick="location.href='./logout.php'" style="float:right; font-size:15.5px;">로그아웃</button>
         <br />
     <?php
@@ -73,7 +84,7 @@
         <thead align="center">
             <tr>
                 <td width="50" align="center">번호</td>
-                <td width="500" align="center">제목</td>
+                <td width="200" align="center">제목</td>
                 <td width="100" align="center">작성자</td>
                 <td width="200" align="center">날짜</td>
                 <td width="50" align="center">조회수</td>
@@ -89,11 +100,11 @@
                         <!--배경색 진하게-->
                     <?php } else {
                     ?>
-                    <tr>
+                    <tr class="odd"> 
                         <!--배경색 그냥-->
                     <?php } ?>
                     <td width="50" align="center"><?php echo $total ?></td>
-                    <td width="500" align="center">
+                    <td width="200" align="center">
                         <a href="read.php?number=<?php echo $rows['numer'] ?>">
                             <?php echo $rows['title'] ?>
                     </td>

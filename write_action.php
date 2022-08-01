@@ -1,13 +1,15 @@
 <?php
 $connect = mysqli_connect("15.164.218.149", "admin_is_sjoo", "bob_11_029_sjoo", "bob_db") or die("fail");
 
-$id = $_POST['name'];                   //Writer
+
 $pw = $_POST['pw'];                     //Password
 $title = $_POST['title'];               //Title
 $content = $_POST['content']; 		//Content
 date_default_timezone_set('Asia/Seoul');
 $date = date('Y-m-d H:i:s');            //Date
 session_start();
+$id = $_SESSION['userid'];
+$level = $_SESSION['level'];
 if(!$_SESSION['level'])
 {
 ?>
@@ -39,8 +41,8 @@ else{
 $URL = './index.php';                   //return URL
 
 
-$query = "INSERT INTO board (numer, title, content, date, hit, id, passwd) 
-        values(null,'$title', '$content', '$date', 0, '$id', '$pw')";
+$query = "INSERT INTO board (numer, title, content, date, hit, id, passwd,level) 
+        values(null,'$title', '$content', '$date', 0, '$id', '$pw',$level)";
 
 
 $result = $connect->query($query);

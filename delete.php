@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="style.css">
 <meta charset='utf-8'>
 </head>
 
 <body>
-<div align ='center'>
+<div align ='center' class=wrap>
 <?php
  $number = $GET['number'];
  $connect = mysqli_connect('15.164.218.149', 'admin_is_sjoo', 'bob_11_029_sjoo', 'bob_db');
@@ -14,16 +15,15 @@
 
 ?>
 
-<form method = 'post' action='delete_action.php'>
+<form method = 'post' action='delete_action.php' class='form'>
 <p><b> 게시글 작성 할 때 썼던 비밀번호를 입력해 주세요!</b>
-<input name = "passwd" type='text'></p>
+<input name = "passwd" type='text' placeholder="PASSWORD"></p>
 <b> 주소창에 보이는 'number'입력 해 주세요! </b>
-<input name = 'number' type='int'></p>
-<input type ='submit' value='확인'>
+<input name = 'number' type='int' placeholder="NUMBER"></p>
+<input type ='submit' value='확인' class='form_btn'>
+<p class='pre_btn'>삭제하기 싫나요? --> <a href='./index.php'>돌아가기</a></p>
 </form>
 
-<br>
-<button onclick="location.href='./index.php'" style="float:center; font-size:15.5px;">돌아가기</button>
 
 </body>
 
