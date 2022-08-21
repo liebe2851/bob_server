@@ -10,6 +10,9 @@ $date = date('Y-m-d H:i:s');            //Date
 session_start();
 $id = $_SESSION['userid'];
 $level = $_SESSION['level'];
+$title_check=str_replace(" ","",$title);
+$title_check=str_replace("	","",$title_check);
+
 if(!$_SESSION['level'])
 {
 ?>
@@ -18,8 +21,9 @@ if(!$_SESSION['level'])
 </script>
 
 <?php
-}	
-if(strlen($content)<5||strlen($title)<5){
+}
+
+if(strlen($content)<5||strlen($title_check)<5){
 ?>
 	<script>alert("내용 또는 제목이 너무 짧아요!");
 	history.back();
@@ -28,7 +32,7 @@ if(strlen($content)<5||strlen($title)<5){
 
 <?php
 }
-else if(strlen($id)<5)
+else if(strlen($id)<3)
 	{
 ?>
 <script>alert("작성자 이름을 제대로 입력 해 주세요!");

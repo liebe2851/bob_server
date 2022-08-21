@@ -5,6 +5,10 @@ $id = $_POST['id'];
 $pw = $_POST['pw'];
 $re_pw = $_POST['re_pw'];
 //id 중복 확인
+$id=str_replace(" ","",$id);
+$id=str_replace("	","",$id);
+$id=addslashes($id);
+$pw=addslashes($pw);
 if(strlen($id)<2||strlen($pw)<2){
 ?>
 	<script>alert("id, pw는 3자이상으로 해주세요!");
